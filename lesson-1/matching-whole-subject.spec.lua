@@ -1,4 +1,4 @@
-local expression = require("position-capture")
+local expression = require("matching-whole-subject")
 
 describe("Summation expressions:", function()
   local cases = {
@@ -23,7 +23,9 @@ describe("Summation expressions:", function()
     { input = " ",                         expected = {} },
     { input = "\t",                        expected = {} },
     { input = "",                          expected = {} },
-    { input = "a1 + 2",                    expected = {} }
+    { input = "a1 + 2",                    expected = {} },
+    { input = "I like to move it 1 + 2",   expected = {} },
+    { input = "1 + 2 something else",      expected = {} }
   }
 
   for _, case in ipairs(cases) do

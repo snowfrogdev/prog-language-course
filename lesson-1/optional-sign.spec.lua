@@ -1,4 +1,4 @@
-local expression = require("position-capture")
+local expression = require("optiona-sign")
 
 describe("Summation expressions:", function()
   local cases = {
@@ -8,6 +8,11 @@ describe("Summation expressions:", function()
     { input = "1+ 2 + 3+4",                expected = { "1", 2, "2", 6, "3", 9, "4" } },
     { input = "1 +2+ 3 + 4",               expected = { "1", 3, "2", 5, "3", 9, "4" } },
     { input = "1 + 2+3 + 4 + 5",           expected = { "1", 3, "2", 6, "3", 9, "4", 13, "5" } },
+    { input = "-1 + 2",                    expected = { "-1", 4, "2" } },
+    { input = "1 + -2",                    expected = { "1", 3, "-2" } },
+    { input = "+1 + -2",                   expected = { "+1", 4, "-2" } },
+    { input = "+ 1 + -2",                  expected = {} },
+    { input = "--1 + 2",                   expected = {} },
     { input = "1",                         expected = {} },
     { input = "1 +",                       expected = {} },
     { input = "1 + ",                      expected = {} },
@@ -23,7 +28,9 @@ describe("Summation expressions:", function()
     { input = " ",                         expected = {} },
     { input = "\t",                        expected = {} },
     { input = "",                          expected = {} },
-    { input = "a1 + 2",                    expected = {} }
+    { input = "a1 + 2",                    expected = {} },
+    { input = "I like to move it 1 + 2",   expected = {} },
+    { input = "1 + 2 something else",      expected = {} }
   }
 
   for _, case in ipairs(cases) do

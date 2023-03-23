@@ -1,6 +1,6 @@
 local expression = require("matching-a-summation")
 
-describe("Summation expressions:", function()
+describe("Summation expressions with position capture:", function()
   local cases = {
     { input = "1+2",                       expected = 4 },
     { input = "1 + 2",                     expected = 6 },
